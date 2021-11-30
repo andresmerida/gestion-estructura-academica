@@ -1,2 +1,14 @@
 server:
   port: 8082
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://localhost:5432/test_gea_db
+    username: postgres
+    password: postgres
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+      maximum-pool-size: 8
+  flyway:
+    locations: classpath:db/migration,classpath:test/db/migration

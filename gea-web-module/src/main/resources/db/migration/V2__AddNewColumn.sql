@@ -1,0 +1,1 @@
+ALTER TABLE country ADD COLUMN newAttribute VARCHAR(30);
