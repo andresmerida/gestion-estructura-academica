@@ -3,6 +3,7 @@ package org.curso.gea.domain.config;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,5 +22,7 @@ public class Country {
     private String name;
     private String initials;
     private Boolean active;
+
+    @Column(name = "newattribute")
     private String newAttribute;
 }
