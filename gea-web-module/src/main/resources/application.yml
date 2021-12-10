@@ -4,3 +4,12 @@ server:
 spring:
   profiles:
     active: dev
+    default: dev
+
+# ===================================================================
+# Application specific properties
+# Add your own application properties here, see the ApplicationProperties class
+# ===================================================================
+application:
+  name: Gestion de la Estructura Academinca
+  initials: GEA

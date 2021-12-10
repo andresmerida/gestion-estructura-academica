@@ -15,7 +15,6 @@ public class CountryMapper implements CustomMapper<CountryDTO, Country> {
         dto.setName(country.getName());
         dto.setInitials(country.getInitials());
         dto.setActive(country.getActive());
-        dto.setNewAttribute(country.getNewAttribute());
         return dto;
     }
 
@@ -26,7 +25,6 @@ public class CountryMapper implements CustomMapper<CountryDTO, Country> {
         country.setName(countryDTO.getName());
         country.setInitials(countryDTO.getInitials());
         country.setActive(countryDTO.getActive());
-        country.setNewAttribute(countryDTO.getNewAttribute());
         return country;
     }
 }

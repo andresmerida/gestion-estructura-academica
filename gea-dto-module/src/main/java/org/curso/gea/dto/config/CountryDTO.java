@@ -12,5 +12,4 @@ public class CountryDTO {
     private String name;
     private String initials;
     private Boolean active = Boolean.TRUE;
-    private String newAttribute;
 }
