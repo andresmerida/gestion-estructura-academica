@@ -54,8 +54,7 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public void logicalDelete(Integer id) {
-        var country = countryRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid country id: " + id));
+        var country = countryRepository.getById(id);
         country.setActive(Boolean.FALSE);
         countryRepository.save(country);
     }

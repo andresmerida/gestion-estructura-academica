@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -19,13 +20,14 @@ import javax.persistence.Table;
 public class City {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "city_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String initials;
     private Boolean active;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "countryId")
+    @JoinColumn(name = "countryid")
     private Country country;
 }
