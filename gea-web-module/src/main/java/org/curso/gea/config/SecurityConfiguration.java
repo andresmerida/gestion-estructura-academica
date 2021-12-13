@@ -1,4 +1,4 @@
-package org.curso.gea.web.rest.config;
+package org.curso.gea.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;
