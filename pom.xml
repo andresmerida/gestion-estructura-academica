@@ -33,6 +33,7 @@
         <flyway-core.version>8.1.0</flyway-core.version>
 
         <jhipster-dependencies.version>7.4.0</jhipster-dependencies.version>
+        <hibernate-validator.version>6.2.0.final</hibernate-validator.version>
     </properties>
 
     <dependencyManagement>

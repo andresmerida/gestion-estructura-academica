@@ -12,4 +12,22 @@
     <artifactId>gea-dto-module</artifactId>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.curso</groupId>
+            <artifactId>gea-repository-module</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+    </dependencies>
+
 </project>
