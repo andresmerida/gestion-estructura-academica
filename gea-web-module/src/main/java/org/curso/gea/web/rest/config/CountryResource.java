@@ -17,11 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 
+import static org.curso.gea.domain.utils.constants.DBConstants.COUNTRY_TABLE_NAME_DB;
+import static org.curso.gea.web.rest.exceptions.ErrorConstants.ID_EXISTS_BAD_REQUEST;
 import static org.curso.gea.web.rest.exceptions.ErrorConstants.ID_INVALID_BAD_REQUEST;
 import static org.curso.gea.web.rest.exceptions.ErrorConstants.ID_NULL_BAD_REQUEST;
 
@@ -61,7 +64,7 @@ public class CountryResource {
     public ResponseEntity<CountryDTO> getCountry(@PathVariable Integer id) {
         CountryDTO dto = countryService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(String.format("Country with id: %s is not existed",
-                        id.toString()), "country"));
+                        id.toString()), COUNTRY_TABLE_NAME_DB));
 
         return ResponseEntity.ok(dto);
     }
@@ -74,11 +77,11 @@ public class CountryResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping
-    public ResponseEntity<CountryDTO> createCountry(@RequestBody CountryDTO countryDTO) throws URISyntaxException {
+    public ResponseEntity<CountryDTO> createCountry(@Valid @RequestBody CountryDTO countryDTO) throws URISyntaxException {
         log.debug("REST request to create a Country : {}", countryDTO);
 
         if (countryDTO.getId() != null) {
-            throw new BadRequestAlertException("A new country cannot already have an ID", "country", "idexists");
+            throw new BadRequestAlertException("A new country cannot already have an ID", COUNTRY_TABLE_NAME_DB, ID_EXISTS_BAD_REQUEST);
         }
 
         CountryDTO dtoDB = countryService.save(countryDTO);
@@ -101,11 +104,11 @@ public class CountryResource {
         log.debug("REST request to update Country : {}, {}", id, countryDTO);
 
         if (countryDTO.getId() == null) {
-            throw new BadRequestAlertException("Invalid Country ID, null value", "country", ID_NULL_BAD_REQUEST);
+            throw new BadRequestAlertException("Invalid Country ID, null value", COUNTRY_TABLE_NAME_DB, ID_NULL_BAD_REQUEST);
         }
 
         if (!Objects.equals(id, countryDTO.getId())) {
-            throw new BadRequestAlertException("Invalid Country ID,  differents ids", "country", ID_INVALID_BAD_REQUEST);
+            throw new BadRequestAlertException("Invalid Country ID,  differents ids", COUNTRY_TABLE_NAME_DB, ID_INVALID_BAD_REQUEST);
         }
 
         CountryDTO dto = countryService.save(countryDTO);
@@ -123,7 +126,7 @@ public class CountryResource {
     @PatchMapping("/{id}")
     public ResponseEntity<Void> logicalDeleteCountry(@PathVariable Integer id) {
         if (!countryService.findById(id).isPresent()) {
-            throw new ResourceNotFoundException(String.format("Country with id: %s is not existed", id.toString()), "country");
+            throw new ResourceNotFoundException(String.format("Country with id: %s is not existed", id.toString()), COUNTRY_TABLE_NAME_DB);
         }
 
         countryService.logicalDelete(id);

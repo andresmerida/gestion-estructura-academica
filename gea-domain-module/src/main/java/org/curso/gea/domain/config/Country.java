@@ -10,8 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import static org.curso.gea.domain.utils.constants.DBConstants.COUNTRY_TABLE_NAME_DB;
+
 @Entity
-@Table(name = "country")
+@Table(name = COUNTRY_TABLE_NAME_DB)
 @Data
 @NoArgsConstructor
 public class Country {

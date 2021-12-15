@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import static org.curso.gea.web.rest.exceptions.ErrorConstants.ID_EXISTS_BAD_REQUEST;
+
 @RestController
 @RequestMapping("/v1/config/cities")
 public class CityResource {
@@ -43,7 +45,7 @@ public class CityResource {
         log.debug("REST request to create a City : {}", cityDTO);
 
         if (cityDTO.getId() != null) {
-            throw new BadRequestAlertException("A new city cannot already have an ID", "city", "idexists");
+            throw new BadRequestAlertException("A new city cannot already have an ID", "city", ID_EXISTS_BAD_REQUEST);
         }
 
         CityDTO dtoDB = cityService.save(cityDTO);

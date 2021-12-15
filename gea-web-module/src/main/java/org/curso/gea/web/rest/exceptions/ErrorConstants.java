@@ -11,6 +11,7 @@ public final class ErrorConstants {
 
     public static final String ID_NULL_BAD_REQUEST = "idnull";
     public static final String ID_INVALID_BAD_REQUEST = "idinvalid";
+    public static final String ID_EXISTS_BAD_REQUEST = "idexists";
 
     private ErrorConstants() {}
 }
